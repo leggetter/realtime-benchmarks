@@ -1,0 +1,19 @@
+# require 'yaml'
+# CONFIG = YAML.load_file('config/config.yml')[(ENV['ENVIRONMENT'] || 'development').to_sym]
+# JBundle configuration file
+# https://github.com/ismasan/jbundle
+
+target_dir './dist'
+
+src_dir './src/public/js'
+
+version '0.2.0'
+
+bundle 'realtime-benchmarks.js' do
+  file 'BenchmarkService.js'
+  file 'PubNubService.js'
+  file 'PusherService.js'
+  file 'RealtimeCoService.js'
+  file 'FirebaseService.js'
+  file 'BenchmarkRunner.js'
+end
