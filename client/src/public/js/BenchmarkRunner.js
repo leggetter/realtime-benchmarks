@@ -1,4 +1,5 @@
 function BenchmarkRunner( services, options ) {
+  this.version = '<VERSION>';
 	this._services = services;
 	this._options = options || {};
 
@@ -33,17 +34,17 @@ BenchmarkRunner.prototype._testInit = function() {
 
 // Services listeners
 BenchmarkRunner.prototype.onMessage = function( message ) {
-    this.onLog( '>>> ' + JSON.stringify( message ) );
+    this.onLog( this._service.name + ': <<< ' + JSON.stringify( message ) );
     
     if( message.timeout != this._localMsg.timeout ) {
-        this.onLog( '>>> received message, but not withing 2 seconds' );
+        this.onLog( this._service.name + ': <<< received message, but not within 2 seconds' );
     }
     else {
         var now = new Date();
         var sent = Date.parse( message.time );
         var latency = ( now - sent );
         this._testLatencyResults.push( latency );
-        this.onLog( '>>> latency: ' + latency + 'ms' );
+        this.onLog( this._service.name + ': <<< latency: ' + latency + 'ms' );
         
         if( this._sendNextUponReceipt ) {
         
@@ -78,6 +79,7 @@ BenchmarkRunner.prototype._sendNextMessage = function() {
          	}, 0 );
         }, 1000);
     
+    this.onLog( this._service.name + ': >>> ' + JSON.stringify( this._localMsg ) );
     this._service.send( this._localMsg );
   }
   else {
@@ -85,7 +87,7 @@ BenchmarkRunner.prototype._sendNextMessage = function() {
 
     this.onLog( 'TEST COMPLETE' );
     this.onLog( 'RESULTS: ' + this._testLatencyResults.join( ', ' ) +
-                 ' (Average: ' + BenchmarkRunner.getAverage( this._testLatencyResults ) + 'ms)' );
+                ' (Average: ' + BenchmarkRunner.getAverage( this._testLatencyResults ) + 'ms)' );
                  
     this._serviceLatencyResults[ this._service.name ] = this._testLatencyResults;
     

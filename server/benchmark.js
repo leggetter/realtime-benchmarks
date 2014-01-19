@@ -4,7 +4,8 @@
 				'http://js.pusher.com/2.1/pusher.min.js',
 				'http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js',
 				'https://cdn.firebase.com/v0/firebase.js',
-				'/realtime_benchmarks/realtime-benchmarks.min.js', 
+				'http://cdn.hydna.com/1/hydna.js',
+				'/realtime_benchmarks/realtime-benchmarks.min.js',
 				init );
 
 	function init() {
@@ -24,7 +25,8 @@
 						PubNubService,
 						PusherService,
 						RealtimeCoService,
-						FirebaseService
+						FirebaseService,
+						HydnaService
 				];
 
 		var position = null,
@@ -41,7 +43,7 @@
 				log( 'no result exists. cannot update geolocation' );
 			}
 			else {
-				result.location = position
+				result.location = position;
 
 				if( jQuery ) {
 					var postData = {};

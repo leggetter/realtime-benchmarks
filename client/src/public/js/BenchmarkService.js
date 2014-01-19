@@ -9,7 +9,6 @@ function BenchmarkService( testChannelName, serviceListener ) {
 }
 
 BenchmarkService.prototype._onMessage = function( message ) {
-    this._log( this.name + ' >>> ' + JSON.stringify( message ) );
     this._serviceListener.onMessage( message );
 };
 
@@ -18,7 +17,7 @@ BenchmarkService.prototype._onReady = function() {
 };
 
 BenchmarkService.prototype._log = function( message ) {
-    this._serviceListener.onLog( message );
+    this._serviceListener.onLog( this.name + ': ' + message );
 };
 
 BenchmarkService.prototype.send = function( data ) {
