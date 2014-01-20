@@ -9,43 +9,25 @@ function GoInstantService() {
 
   self.connectUrl = 'https://goinstant.net/ccf8fe39696c/benchmarks';
 
-  self.publishConnection = null;
-  self.publishBenchmark = null;
-
-  self.subscribeConnection = null;
-  self.subscribeBenchmark = null;
+  self.connection = null;
+  self.benchmark = null;
     
-  goinstant.connect( self.connectUrl, { user: { id: 'pub', displayName: 'Publisher' } }, function (err, connection, lobby ) {
+  goinstant.connect( self.connectUrl, function (err, connection, lobby ) {
     if (err) {
       throw err;
     }
 
-    self.publishConnection = connection;
-    self.publishBenchmark = lobby.channel( 'benchmark' );
+    self.connection = connection;
+    self.benchmark = lobby.key( '/benchmark' );
 
-    self._createSubscribeConnection();
-  } );
-}
-GoInstantService.prototype = new BenchmarkService;
-
-GoInstantService.prototype._createSubscribeConnection = function() {
-  var self = this;
-
-  goinstant.connect( self.connectUrl, { user: { id: 'sub', displayName: 'Subscriber' } }, function (err, connection, lobby ) {
-    if (err) {
-      throw err;
-    }
-
-    self.subscribeConnection = connection;
-    self.subscribeBenchmark = lobby.channel( 'benchmark' );
-
-    self.subscribeBenchmark.on( 'message', function( data, context ) {
-      self._onMessage( data );
+    self.benchmark.on( 'set', { local: true }, function( value, context ) {
+      self._onMessage( value );
     } );
 
     self._onReady();
   } );
-};
+}
+GoInstantService.prototype = new BenchmarkService;
 
 GoInstantService.prototype._handleResponse = function( err, msg, context ) {
   if( err ) {
@@ -54,16 +36,9 @@ GoInstantService.prototype._handleResponse = function( err, msg, context ) {
 };
 
 GoInstantService.prototype.send = function( message ) {
-  var self = this;
-
-  self._log( "sending: " + JSON.stringify( message ) );
-
-  this.publishBenchmark.message( message, function() {
-    self._handleResponse.apply( self, arguments );
-  } );
+  this.benchmark.set( message );
 };
 
 GoInstantService.prototype.disconnect = function() {
-  this.publishConnection.disconnect();
-  this.subscribeConnection.disconnect();
+  this.connection.disconnect();
 };
