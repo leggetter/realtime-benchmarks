@@ -5,6 +5,7 @@
 				'http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js',
 				'https://cdn.firebase.com/v0/firebase.js',
 				'http://cdn.hydna.com/1/hydna.js',
+				'https://cdn.goinstant.net/v1/platform.min.js',
 				'/realtime_benchmarks/realtime-benchmarks.min.js',
 				init );
 
@@ -26,7 +27,8 @@
 						PusherService,
 						RealtimeCoService,
 						FirebaseService,
-						HydnaService
+						HydnaService,
+						GoInstantService
 				];
 
 		var position = null,
