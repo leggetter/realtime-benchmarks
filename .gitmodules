@@ -1,0 +1,6 @@
+[submodule "reporting"]
+	path = reporting
+	url = git@heroku.com:realtime-latency-stats.git
+[submodule "report-server"]
+	path = report-server
+	url = git@heroku.com:realtime-latency-stats.git

@@ -1,6 +1,7 @@
 <?php
 require( 'config.php' );
 
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: text/javascript');
 
 // only allow last 10 to be retrived
