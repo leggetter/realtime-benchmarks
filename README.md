@@ -1,6 +1,6 @@
 # Realtime Benchmarks
 
-Does some benchmarking of popular Realtime Hosted Services. You can see the current stats on the [Realtime Hosted Service Latency Stats page][latency-page]
+Does some benchmarking of popular Realtime Hosted Services. You can see the current stats on the [Realtime Hosted Service Latency Stats page][latency-page].
 
 The services that are currently benchmarked are:
 
