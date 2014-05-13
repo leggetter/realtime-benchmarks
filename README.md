@@ -1,6 +1,6 @@
 # Realtime Benchmarks
 
-Does some benchmarking of popular Realtime Hosted Services.
+Does some benchmarking of popular Realtime Hosted Services. You can see the current stats on the [Realtime Hosted Service Latency Stats page][latency-page]
 
 The services that are currently benchmarked are:
 
@@ -27,7 +27,7 @@ The `src/public/js/BenchmarkService.js` class is an abstract class that defines 
 
 ## report-server
 
-Basic code required to provide some historical and realtime latency on the [Realtime Hosted Service Latency Stats page](http://www.leggetter.co.uk/real-time-web-technologies-guide/realtime-hosted-service-latency).
+Basic code required to provide some historical and realtime latency on the [Realtime Hosted Service Latency Stats page][latency-page].
 
 This includes and endpoint for consuming new results and uses [Faye](http://faye.jcoglan.com) to deliver realtime updates to the latency stats page.
 
@@ -43,4 +43,4 @@ Some code for fetching and analysing the results that have been captured since *
 
 Code that is used to faciliate the benchmark tests and store the results.
 
-
+[latency-page]: http://www.leggetter.co.uk/real-time-web-technologies-guide/realtime-hosted-service-latency
