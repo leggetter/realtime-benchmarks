@@ -3,10 +3,17 @@ require( 'config.php' );
 
 header('Content-Type: text/javascript');
 
-if( $_GET[ 'auth_key' ] != AUTH_KEY ) {
-  header('HTTP/1.0 401 Unauthorized');
-  echo('You are not authorised to access this resource');
-  exit;
+// only allow last 10 to be retrived
+$limit = 10;
+$offset = 0;
+$order_by = 'timestamp desc';
+
+if( $_GET[ 'auth_key' ] == AUTH_KEY ) {
+  $limit = 250;
+  $offset = ( isset( $_GET[ 'offset' ] )? $_GET[ 'offset' ] : 0 );
+  $order_by_col = ( isset( $_GET[ 'col' ] )? $_GET[ 'col' ] : 'timestamp' );
+  $order_by_dir = ( isset( $_GET[ 'dir' ] )? $_GET[ 'dir' ] : 'desc' );
+  $order_by = "$order_by_col $order_by_dir";
 }
 
 $result = array();
@@ -19,11 +26,11 @@ if (!$con)
 else {
 
 	mysql_select_db($db_name, $con);
-  
-  $offset = ( isset( $_GET[ 'offset' ] )? $_GET[ 'offset' ] : 0 );
+
+
   $offset = mysql_real_escape_string( $offset );
 
-	$query = "SELECT * FROM $db_tablename limit 250 offset $offset";
+	$query = "SELECT * FROM $db_tablename order by $order_by limit $limit offset $offset";
 
 	$query_result = mysql_query($query);
 	if( !$query_result ) {
