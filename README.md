@@ -37,7 +37,7 @@ This includes and endpoint for consuming new results and uses [Faye](http://faye
 
 Some code for fetching and analysing the results that have been captured since *Sun Oct 28 2012 12:52:01 GMT+0000 (GMT)*.
 
-*Note: Calling the results endpoint will only return the last 10 results. If you'd like a copy of the raw data then please get in touch
+*Note: Calling the results endpoint will only return the last 10 results. If you'd like a copy of the raw data then please get in touch.*
 
 ## server
 
