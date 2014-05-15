@@ -7,7 +7,7 @@ target_dir './dist'
 
 src_dir './src/public/js'
 
-version '0.4.1'
+version '0.5.3'
 
 bundle 'realtime-benchmarks.js' do
   file 'BenchmarkService.js'
@@ -17,5 +17,6 @@ bundle 'realtime-benchmarks.js' do
   file 'FirebaseService.js'
   file 'HydnaService.js'
   file 'GoInstantService.js'
+  file 'FanoutService.js'
   file 'BenchmarkRunner.js'
 end

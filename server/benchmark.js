@@ -6,6 +6,8 @@
 				'https://cdn.firebase.com/v0/firebase.js',
 				'http://cdn.hydna.com/1/hydna.js',
 				'https://cdn.goinstant.net/v1/platform.min.js',
+				'http://pubsub.fanout.io/static/json2.js',
+				'/realtime_benchmarks/service-libs/fanout.js',
 				'/realtime_benchmarks/realtime-benchmarks.min.js',
 				init );
 
@@ -21,14 +23,15 @@
 	}
 
 	function runBenchmark(){
-									
+
 		var services = [
 						PubNubService,
 						PusherService,
 						RealtimeCoService,
 						FirebaseService,
 						HydnaService,
-						GoInstantService
+						GoInstantService,
+						FanoutService
 				];
 
 		var position = null,
@@ -62,9 +65,9 @@
 			}
 
 		}
-				
+
 		var runner = new BenchmarkRunner( services, {
-			logToConsole: false,
+			logToConsole: true,
 			completed: function( results ) {
 
 				var postData = {
