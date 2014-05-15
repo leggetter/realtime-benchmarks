@@ -19,7 +19,7 @@ function FanoutService( channelName, listener ) {
     }
   });
   this.channel.on('data', function (data) {
-    self._onMessage( message );
+    self._onMessage( data );
   });
 }
 FanoutService.prototype = new BenchmarkService;
@@ -34,7 +34,10 @@ FanoutService.prototype.send = function( data ) {
       }
     }
   };
-  xhr.open('POST', 'http://api.fanout.io/realm/' + this.realmId + '/publish/', true);
+  xhr.open('POST', 'http://api.fanout.io/realm/' +
+                    this.realmId +
+                    '/publish/' +
+                    this._channelName + '/', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify(body));
 };
