@@ -4,8 +4,9 @@ Does some benchmarking of popular Realtime Hosted Services. You can see the curr
 
 The services that are currently benchmarked are:
 
+* [Fanout](http://fanout.io)
 * [Firebase](http://firebase.com)
-* [GoIntsant](http://goinstant.com)
+* [GoInstant](http://goinstant.com)
 * [Hydna](http://hydna.com)
 * [PubNub](http://pubnub.com)
 * [Pusher](http://pusher.com)
