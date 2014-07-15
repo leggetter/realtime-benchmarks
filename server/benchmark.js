@@ -67,7 +67,7 @@
 		}
 
 		var runner = new BenchmarkRunner( services, {
-			logToConsole: true,
+			logToConsole: false,
 			completed: function( results ) {
 
 				var postData = {
