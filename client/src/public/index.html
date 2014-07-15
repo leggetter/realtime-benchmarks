@@ -30,16 +30,16 @@
 
         <script>
             (function(){
-                
+
                 var services = [
-                        // PubNubService,
-                        // PusherService,
-                        // RealtimeCoService,
-                        // FirebaseService,
-                        // HydnaService,
+                        PubNubService,
+                        PusherService,
+                        RealtimeCoService,
+                        FirebaseService,
+                        HydnaService,
                         GoInstantService
                     ];
-                    
+
                 var runner = new BenchmarkRunner( services, { logToConsole: true } );
                 runner.start();
 
