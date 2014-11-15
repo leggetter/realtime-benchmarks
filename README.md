@@ -25,6 +25,20 @@ The `src/public/js/BenchmarkService.js` class is an abstract class that defines 
 * If the implementation wants to log anything it can call `onLog` on the provided listener.
 * Each implementation is given a channel name that it can send message on, if required.
 
+### Testing and Developing New Benchmarks
+
+A development server can be run using [foreman](http://ddollar.github.io/foreman/).
+
+```
+› cd client
+› foreman start
+07:56:44 web.1  | started with pid 14596
+07:56:45 web.1  | [2014-11-15 07:56:45] INFO  WEBrick 1.3.1
+07:56:45 web.1  | [2014-11-15 07:56:45] INFO  ruby 2.0.0 (2013-11-22) [x86_64-darwin13.0.0]
+07:56:45 web.1  | == Sinatra/1.3.3 has taken the stage on 5000 for development with backup from WEBrick
+07:56:45 web.1  | [2014-11-15 07:56:45] INFO  WEBrick::HTTPServer#start: pid=14596 port=5000
+```
+
 ## report-server
 
 Basic code required to provide some historical and realtime latency on the [Realtime Hosted Service Latency Stats page][latency-page].
