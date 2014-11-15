@@ -16,7 +16,6 @@ bundle 'realtime-benchmarks.js' do
   file 'RealtimeCoService.js'
   file 'FirebaseService.js'
   file 'HydnaService.js'
-  file 'GoInstantService.js'
   file 'FanoutService.js'
   file 'BenchmarkRunner.js'
 end

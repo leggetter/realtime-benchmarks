@@ -6,7 +6,6 @@ The services that are currently benchmarked are:
 
 * [Fanout](http://fanout.io)
 * [Firebase](http://firebase.com)
-* [GoInstant](http://goinstant.com)
 * [Hydna](http://hydna.com)
 * [PubNub](http://pubnub.com)
 * [Pusher](http://pusher.com)

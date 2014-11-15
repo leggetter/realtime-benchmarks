@@ -10,7 +10,6 @@
         <script src="http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js"></script>
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="http://cdn.hydna.com/1/hydna.js"></script>
-        <script src="https://cdn.goinstant.net/v1/platform.min.js"></script>
         <script src="http://pubsub.fanout.io/static/json2.js"></script>
         <!--script src="http://pubsub.fanout.io/static/fppclient-1.0.1.min.js"></script-->
         <script src="service-libs/fanout.js"></script>
@@ -27,7 +26,6 @@
                 // RealtimeCoService,
                 // FirebaseService,
                 // HydnaService,
-                // GoInstantService,
                 FanoutService
             ];
 
