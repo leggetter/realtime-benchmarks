@@ -11,6 +11,7 @@
         <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
         <script src="http://cdn.hydna.com/1/hydna.js"></script>
         <script src="js/service-libs/fanout.js"></script>
+        <script src="js/service-libs/sockjs-syncano-combined.js"></script>
 
         <script src="js/BenchmarkRunner.js"></script>
         <script src="js/BenchmarkService.js"></script>
@@ -20,6 +21,7 @@
         <script src="js/FirebaseService.js"></script>
         <script src="js/HydnaService.js"></script>
         <script src="js/FanoutService.js"></script>
+        <script src="js/SyncanoService.js"></script>
         <script>
 
 // put minified code here for testing
@@ -37,7 +39,8 @@
                         RealtimeCoService,
                         FirebaseService,
                         HydnaService,
-                        FanoutService
+                        FanoutService,
+                        SyncanoService
                     ];
 
                 var runner = new BenchmarkRunner( services, { logToConsole: true } );
