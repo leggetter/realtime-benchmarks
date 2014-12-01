@@ -3,4 +3,4 @@
 	url = git@heroku.com:realtime-latency-stats.git
 [submodule "report-server"]
 	path = report-server
-	url = git@heroku.com:realtime-latency-stats.git
+	url = git@github.com:leggetter/realtime-benchmarks-reporting.git
