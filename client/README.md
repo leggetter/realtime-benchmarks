@@ -1,0 +1,3 @@
+## Build
+
+`rake build`
