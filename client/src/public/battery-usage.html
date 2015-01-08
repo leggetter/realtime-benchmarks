@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+      }
+
+      #start_btn[disabled] {
+        color: #f0f0f0;
+      }
+
+      #result {
+        height: 60%;
+        width: 80%;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Realtime Benchmark - Battery Usage Stats</h1>
+    <p>
+      This page will run the benchmarks for a selected service a configurable number times. For each cycle of benchmark runs the battery usage of your device will be captured. When the cycles have completed the results will appear in the <code>textarea</code> below.
+    </p>
+
+    <h2>Run the Benchmarks</h2>
+
+    <label for="service_choice">Service</label>
+    <select id="service_choice" name="service_choice"></select>
+
+    <label for="test_count">Number of tests to run</label>
+    <input id="test_count" name="test_count" type="number" value="30" required />
+
+    <button id="start_btn" disabled>Start</button>
+
+    <h2>Results</h2>
+    <h3>Benchmark Tests Status: <span id="test_status">Not Started</span></h3>
+    <textarea id="result"></textarea>
+
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+    <script src="http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js"></script>
+    <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
+    <script src="http://cdn.hydna.com/1/hydna.js"></script>
+    <script src="js/service-libs/fanout.js"></script>
+
+    <script src="js/BenchmarkRunner.js"></script>
+    <script src="js/BenchmarkService.js"></script>
+    <script src="js/PubNubService.js"></script>
+    <script src="js/PusherService.js"></script>
+    <script src="js/RealtimeCoService.js"></script>
+    <script src="js/FirebaseService.js"></script>
+    <script src="js/HydnaService.js"></script>
+    <script src="js/FanoutService.js"></script>
+
+    <script>
+      Pusher.channel_auth_endpoint = 'http://phobos7.co.uk/leggetter/realtime_benchmarks/pusher_auth.php';
+
+      function BatteryUsageStats( batteryManager, service, options ) {
+
+        this._batteryManager = batteryManager;
+        this._options = options || {};
+
+        this._runner = new BenchmarkRunner( [ service ], {
+          logToConsole: this._options.logToConsole,
+          completed: this._runCompleted.bind( this )
+        } );
+
+        this._batterUsageStats = [];
+        this._targetRunCount = this._options.targetRunCount || 10;
+      }
+
+      BatteryUsageStats.prototype._nextRun = function() {
+        // +1 to allow for the initial battery reading at the start of the test
+        if( this._batterUsageStats.length !== ( this._targetRunCount + 1 ) ) {
+          this._runner.reset();
+          this._runner.start();
+        }
+        else if( this._options.completed ) {
+          this._options.completed( this._batterUsageStats );
+        }
+        else {
+          console.log( 'Battery usage benchmarks complete!' );
+          console.log( this._batterUsageStats );
+        }
+      };
+
+      BatteryUsageStats.prototype._runCompleted = function( results ) {
+        this._batterUsageStats.push( this.getCurrentBatterStats() );
+        this._nextRun();
+      }
+
+      BatteryUsageStats.prototype.start = function() {
+        // Initial value
+        this._batterUsageStats.push( this.getCurrentBatterStats() );
+
+        // Run
+        this._nextRun();
+      }
+
+      BatteryUsageStats.prototype.getCurrentBatterStats = function() {
+        var stats = {
+          time: Date.now(),
+          level: this._batteryManager.level
+        };
+        return stats;
+      };
+
+      (function(){
+
+        var resultEl = document.getElementById( 'result' );
+        var statusEl = document.getElementById( 'test_status' );
+        var startBtnEl = document.getElementById( 'start_btn' );
+        var selectedServiceEl = document.getElementById( 'service_choice' );
+        var testCountEl = document.getElementById( 'test_count' );
+
+        if( !navigator.getBattery ) {
+          statusEl.innerText = 'BatteryManager not available in browser';
+          return;
+        }
+
+        var batteryManager;
+
+        function completed( results ) {
+          resultEl.value = JSON.stringify( results, null, 2 );
+          statusEl.innerText = "Completed"
+          startBtnEl.removeAttribute( 'disabled' );
+        }
+
+        navigator.getBattery().then(function( bm ) {
+
+          batteryManager = bm;
+
+          startBtnEl.removeAttribute( 'disabled' );
+
+        }).catch( function( err ) {
+          console.error( err );
+        } );
+
+        var services = {
+          'fanout': FanoutService,
+          'firebase': FirebaseService,
+          'hydna': HydnaService,
+          'pubnub': PubNubService,
+          'pusher': PusherService,
+          'realtime.co': RealtimeCoService
+        };
+
+        for( var service in services ) {
+          var optionEl = document.createElement( 'option' );
+          optionEl.setAttribute( 'value', service );
+          optionEl.innerText = service;
+          selectedServiceEl.appendChild( optionEl );
+        }
+
+        startBtnEl.addEventListener( 'click', function() {
+
+          startBtnEl.setAttribute( 'disabled', 'disabled' );
+          resultEl.value = '';
+
+          var selectedServiceValue = selectedServiceEl.value;
+          var selectedService = services[ selectedServiceValue ];
+          var targetRunCount = Number( testCountEl.value );
+
+          var batteryUsageStatus =
+            new BatteryUsageStats( batteryManager, selectedService, {
+              logToConsole: true,
+              completed: completed,
+              targetRunCount: targetRunCount
+            } );
+          batteryUsageStatus.start();
+
+          statusEl.innerText = "Running";
+        } );
+
+      })();
+    </script>
+  </body>
+</html>
