@@ -17,5 +17,6 @@ bundle 'realtime-benchmarks.js' do
   file 'FirebaseService.js'
   file 'HydnaService.js'
   file 'FanoutService.js'
+  file 'DataMcFlyService.js'
   file 'BenchmarkRunner.js'
 end
