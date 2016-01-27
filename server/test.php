@@ -7,7 +7,7 @@
 
         <script src="https://cdn.pubnub.com/pubnub.min.js"></script>
         <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
-        <script src="http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js"></script>
+        <script src="http://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="http://cdn.hydna.com/1/hydna.js"></script>
         <script src="http://pubsub.fanout.io/static/json2.js"></script>
