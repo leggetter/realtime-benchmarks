@@ -5,9 +5,8 @@
 				'http://messaging-public.realtime.co/js/2.1.0/ortc.js',
 				'https://cdn.firebase.com/js/client/1.0.17/firebase.js',
 				'http://cdn.hydna.com/1/hydna.js',
-				'http://pubsub.fanout.io/static/json2.js',
-				'/realtime_benchmarks/service-libs/fanout.js',
 				'https://cdn.datamcfly.com/DataMcFly.js',
+				'http://d7d63e3a.fanoutcdn.com/bayeux/static/faye-browser-min.js'
 				'/realtime_benchmarks/realtime-benchmarks.min.js',
 				init );
 

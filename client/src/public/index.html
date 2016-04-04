@@ -6,22 +6,22 @@
         Open the JavaScript console
 
         <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-        <script src="http://js.pusher.com/2.1/pusher.min.js"></script>
+        <script src="http://js.pusher.com/3.0/pusher.min.js"></script>
         <script src="http://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
         <script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
         <script src="http://cdn.hydna.com/1/hydna.js"></script>
-        <script src="js/service-libs/fanout.js"></script>
+        <script src="http://d7d63e3a.fanoutcdn.com/bayeux/static/faye-browser-min.js"></script>
         <script src="https://cdn.datamcfly.com/DataMcFly.js"></script>
 
         <script src="js/BenchmarkRunner.js"></script>
         <script src="js/BenchmarkService.js"></script>
-        <script src="js/PubNubService.js"></script>
+        <!-- <script src="js/PubNubService.js"></script>
         <script src="js/PusherService.js"></script>
         <script src="js/RealtimeCoService.js"></script>
         <script src="js/FirebaseService.js"></script>
-        <script src="js/HydnaService.js"></script>
+        <script src="js/HydnaService.js"></script> -->
         <script src="js/FanoutService.js"></script>
-        <script src="js/DataMcFlyService.js"></script>
+        <!-- <script src="js/DataMcFlyService.js"></script> -->
         <script>
 
 // put minified code here for testing
@@ -36,13 +36,13 @@
               Pusher.channel_auth_endpoint = 'http://phobos7.co.uk/leggetter/realtime_benchmarks/pusher_auth.php';
 
                 var services = [
-                        PubNubService,
-                        PusherService,
-                        RealtimeCoService,
-                        FirebaseService,
-                        HydnaService,
-                        FanoutService,
-                        DataMcFlyService
+                        // PubNubService,
+                        // PusherService,
+                        // RealtimeCoService,
+                        // FirebaseService,
+                        // HydnaService,
+                        FanoutService
+                        // DataMcFlyService
                     ];
 
                 var runner = new BenchmarkRunner( services, { logToConsole: true } );

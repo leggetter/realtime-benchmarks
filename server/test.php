@@ -10,9 +10,7 @@
         <script src="http://messaging-public.realtime.co/js/2.1.0/ortc.js"></script>
         <script src="https://cdn.firebase.com/v0/firebase.js"></script>
         <script src="http://cdn.hydna.com/1/hydna.js"></script>
-        <script src="http://pubsub.fanout.io/static/json2.js"></script>
-        <!--script src="http://pubsub.fanout.io/static/fppclient-1.0.1.min.js"></script-->
-        <script src="service-libs/fanout.js"></script>
+        <script src="http://d7d63e3a.fanoutcdn.com/bayeux/static/faye-browser-min.js"></script>
 
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script>
