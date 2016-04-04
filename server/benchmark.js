@@ -2,7 +2,7 @@
 
 	head.js('http://cdn.pubnub.com/pubnub.min.js',
 				'http://js.pusher.com/2.1/pusher.min.js',
-				'http://dfdbz2tdq3k01.cloudfront.net/js/2.1.0/ortc.js',
+				'http://messaging-public.realtime.co/js/2.1.0/ortc.js',
 				'https://cdn.firebase.com/js/client/1.0.17/firebase.js',
 				'http://cdn.hydna.com/1/hydna.js',
 				'http://pubsub.fanout.io/static/json2.js',
