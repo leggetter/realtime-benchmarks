@@ -32,8 +32,6 @@ get '/' do
 	# logger.info ENV['USER']
   # logger.info ENV['PWD']
 
-	protected!
-
   send_file File.join(settings.public_folder, 'index.html')
 end
 
