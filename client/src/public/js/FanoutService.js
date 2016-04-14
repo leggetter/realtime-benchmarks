@@ -2,7 +2,7 @@
  *
  */
 function FanoutService( channelName, listener ) {
-  channelName = '+' + channelName;
+  channelName = '!' + channelName;
   BenchmarkService.call( this, channelName, listener );
 
   this.name = 'Fanout';
@@ -22,7 +22,16 @@ function FanoutService( channelName, listener ) {
 FanoutService.prototype = new BenchmarkService;
 
 FanoutService.prototype.send = function( data ) {
-  var body = { items: [ { formats: { 'json-object': data } } ] };
+  var body = {
+    items: [
+      {
+        channel: this._channelName,
+        formats: {
+          'json-object': data
+        }
+      }
+    ]
+  };
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
@@ -33,8 +42,7 @@ FanoutService.prototype.send = function( data ) {
   };
   xhr.open('POST', 'http://api.fanout.io/realm/' +
                     this.realmId +
-                    '/publish/' +
-                    this._channelName + '/', true);
+                    '/publish/', true);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.send(JSON.stringify(body));
 };
